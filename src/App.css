@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container{
+  width: 95%;
+  margin: auto;
+  height: 90vh;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.month{
+  font-size: 2rem;
+  padding: 2rem;
+  font-weight: 700;
+  /* margin: auto; */
+}
+
+.main-calander{
+  width: 30%;
+  height: 60vh;
+  background-color: #fff;
+  box-shadow: 0 2.4rem 4.8rem rgb(0 0 0 / 8%);
+  overflow: hidden;
+  border-radius: 11px;
+  transition: all 0.4s;
+  position: relative;
+}
+
+.calander{
+  font-size: 1.5rem;
+}
+
+.var{
+  padding: 1rem;
+}
+
+.day{
+  padding: 1.5rem;
+}
+
+.today{
+  background-color: blueviolet;
+  border-radius: 50%;
+  padding: 1rem;
+}
+
+
+.set-position-3{
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  width: 20rem;
+}
+
+.set-position-2{
+  position: absolute;
+  top: 5rem;
+  left: 45%;
+  width: 2rem;
+}
+
+.set-position-1{
+  position: absolute;
+  bottom:8rem;
+  left: 36%;
+  width: 3rem;
+}
+
+.set-position-4{
+  position: absolute;
+  top: 4rem;
+  left: 7rem;
+  /* width: 5rem; */
+}
+
+.set-position-5{
+  position: absolute;
+  bottom:5rem;
+  left: 10%;
+  width: 7rem;
+}
+
+.set-position-6{
+  position: absolute;
+  top: 4rem;
+  right: 20rem;
+  /* width: 5rem; */
+}
