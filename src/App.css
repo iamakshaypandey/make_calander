@@ -22,7 +22,7 @@ body{
   font-size: 2rem;
   padding: 2rem;
   font-weight: 700;
-  /* margin: auto; */
+  
 }
 
 .main-calander{
@@ -80,7 +80,7 @@ body{
   position: absolute;
   top: 4rem;
   left: 7rem;
-  /* width: 5rem; */
+  
 }
 
 .set-position-5{
@@ -92,7 +92,20 @@ body{
 
 .set-position-6{
   position: absolute;
+  bottom:5rem;
+  right: 15%;
+  
+}
+
+.set-position-7{
+  position: absolute;
   top: 4rem;
   right: 20rem;
-  /* width: 5rem; */
+
+}
+
+
+.date-input{
+  margin-left: 2rem;
+  
 }

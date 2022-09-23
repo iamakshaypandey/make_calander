@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useEffect } from 'react';
 import oneImg from '../images/assets/one.svg'
 import twoImg from '../images/assets/two.svg'
 import threeImg from '../images/assets/three.svg'
@@ -7,85 +7,135 @@ import fourImg from '../images/assets/four.svg'
 import fiveImg from '../images/assets/five.svg'
 import sixImg from '../images/assets/six.svg'
 import sevenImg from '../images/assets/seven.svg'
+import SearchDate from './SearchDate';
 
 
 function Index() {
+  
 
-  const [weekday,setWeekday] = useState('')
-  console.log(weekday);
-
-  const alldate = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
   const allmonth = ['January','Fubuary','March','April','May','Jun','July','Augesht','September','Octomber','Nuvmbar','December']
-  const allweekday = ['Mon','Tus','Wed','Thu','Fri','Sut','Sun']
+  const allweekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sut']
   
 
-  const findday = new Date()
-  const getmonth = allmonth[findday.getMonth()]
-  const getyear = findday.getFullYear()
-  const getweek = allweekday[findday.getDay()]
-  const today = findday.getDate()
+  let findday = new Date()
+  let getmonth = allmonth[findday.getMonth()]
+  let getyear = findday.getFullYear()
+  let getweek = allweekday[findday.getDay()-1]
+  let today = findday.getDate()
+  let year = findday.getFullYear()
+  let month = findday.getMonth()
+  // eslint-disable-next-line
+  let dateset = findday.setDate(1)
+
+
+  let allday = findday.getDay()
+
+
+
+
+  const prvDate = () =>{
+    const preDate = new Date(year,month,0).getDate()
+    return preDate
+  }
+
+  
+
+
+  const EndDate = (year,month)=>{
+    const endDate = new Date(year,month+1,0).getDate()
+    return endDate
+  }
   
 
 
 
-
-  const manageDate = () =>{
-    let len = 0
+ const manageDate = (today1,getweek1,getyear1,getmonth1) =>{
+    
+    
     let chekweek = document.querySelector('.calander')
     let createtd
     let datevalue
-    for(let i = 0 ; i < 6 ; i ++){
-      for(let j = 0 ; j<5 ; j ++){
+    
 
-        if(alldate[len]%7===0){
-          console.log(alldate[len],'chek');
-          createtd = document.createElement('td')
-          createtd.classList.add('day')
-           datevalue = document.createTextNode(alldate[len])
-          createtd.appendChild(datevalue)
-          chekweek.appendChild(createtd)
-          
-          const createtr = document.createElement('tr')
-          createtr.classList.add('week')
-          chekweek.appendChild(createtr)
-        }else if(alldate[len]===today){
-          console.log(alldate[len],'chek');
-          createtd = document.createElement('td')
-          createtd.classList.add('today')
-          datevalue = document.createTextNode(alldate[len])
-          createtd.appendChild(datevalue)
-          chekweek.appendChild(createtd)
-          console.log(today,'date');
-        }
-        
-        else{
-          console.log(alldate[len]);
-          createtd = document.createElement('td')
-          createtd.classList.add('day')
-          datevalue = document.createTextNode(alldate[len])
-          createtd.appendChild(datevalue)
-          chekweek.appendChild(createtd)
-        }
-        len++
-      }
+    
+    let c = []
+    let count =0
+    for(let j = allday;j>0; j--){
+      
+      c.push(prvDate(year,month)-j+1)
+  
     }
-  }
 
+    for(let k = 0 ; k<c.length ; k++){
+      
+      createtd = document.createElement('td')
+      createtd.classList.add('day')
+      datevalue = document.createTextNode(c[k])
+      createtd.appendChild(datevalue)
+      chekweek.appendChild(createtd)
+
+      
+      count++
+        
+    }
+
+
+    for(let i =1 ; i<=EndDate(year,month);i++){
+
+      count++
+      
+      if(count%7===0){      
+            createtd = document.createElement('td')
+            createtd.classList.add('day')
+            datevalue = document.createTextNode(i)
+            createtd.appendChild(datevalue)
+            chekweek.appendChild(createtd)
+            const createtr = document.createElement('tr')
+            createtr.classList.add('week')
+            chekweek.appendChild(createtr)
+
+            if(i===today){
+              createtd.classList.add('today')
+            }
+
+          }else if(i===today){
+            createtd = document.createElement('td')
+            createtd.classList.add('today')
+            datevalue = document.createTextNode(i)
+            createtd.appendChild(datevalue)
+            chekweek.appendChild(createtd)            
+          }
+          
+          else{
+  
+            createtd = document.createElement('td')
+            createtd.classList.add('day')
+            datevalue = document.createTextNode(i)
+            createtd.appendChild(datevalue)
+            chekweek.appendChild(createtd)
+  
+          }
+  
+        
+        }
+    }
+    
+    
   useEffect(()=>{
-    manageDate()
+    manageDate(today,getweek,getyear,getmonth)
+    // eslint-disable-next-line
   },[])
 
 
 
   return (
    <>
-   {
-     console.log('render')
-   }
     <div className='container'>
       <img src={oneImg}  className='set-position-1' alt="demo" />
       <div className='main-calander'>
-        <div className='month'>{getmonth} {getyear}</div>
+        <div className='month'>{getmonth} {getyear}
+        <SearchDate/>
+        </div>  
         <table className='calander'>
          <tr className='week'>
            {
@@ -98,7 +148,8 @@ function Index() {
       <img src={threeImg} className='set-position-3' alt="" />
       <img src={fourImg} className='set-position-4' alt="" />
       <img src={fiveImg} className='set-position-5' alt="" />
-      <img src={sevenImg} className='set-position-6' alt="" />
+      <img src={sixImg} className='set-position-6' alt="" />
+      <img src={sevenImg} className='set-position-7' alt="" />
     </div>
    </>
   );
